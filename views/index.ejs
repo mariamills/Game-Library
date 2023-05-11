@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <script src="<%= indexJS %>" type="text/javascript" defer></script>
+    <title>Game Library</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <div class="nav-logo">
+          <a href="index.html">Game Library</a>
+        </div>
+        <ul class="nav-links">
+          <li class="nav-item"><a href="#">Home</a></li>
+          <li class="nav-item"><a href="#library">Library</a></li>
+          <li class="nav-item"><a href="#about">About</a></li>
+        </ul>
+        <button id="new-btn" class="btn">Add New Game</button>
+      </div>
+    </nav>
+    <main>
+      <section>
+        <div class="hero-container">
+          <p>
+            Welcome to the Game Library! Here you can keep track of all your
+            favorite games.
+          </p>
+          <h1 class="hero-title">Game Library</h1>
+          <a href="#library" class="btn">View Library</a>
+        </div>
+      </section>
+
+      <section id="library">
+        <div class="library-container">
+          <h2 class="library-title">Your Games</h2>
+          <% if (games.length === 0) { %>
+          <p>You currently have no saved games.</p>
+          <% } else { %>
+          <div class="library">
+            <% games.forEach(function(game) { %>
+            <div class="library-item">
+              <h3 class="library-item-title"><%= game.title %></h3>
+              <p class="library-item-desc"><%= game.game_desc %></p>
+              <button
+                id="more-info-btn"
+                class="more-info-btn btn"
+                data-game-id="<%= game.id %>"
+              >
+                More Info
+              </button>
+              <button
+                id="delete-btn"
+                class="delete-btn btn"
+                data-game-id="<%= game.id %>"
+              >
+                Remove
+              </button>
+            </div>
+            <% }); %>
+          </div>
+          <% } %>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="about-container">
+          <h2 class="about-title">About</h2>
+          <div class="about-details">
+            <img src="/images/game-library.png" alt="" />
+            <div class="about-info">
+              <h3>Keep track of your favorites</h3>
+              <p class="about-text">
+                The Game Library is a place where you can keep track of all your
+                favorite games. You can add new games to your library and delete
+                games you no longer want to keep track of. This is still in the
+                early stages of development, so there are still some features
+                that are not yet implemented. Such as the ability to edit games,
+                and the ability to add a game cover image. Upgrades to the UI
+                are also in the works. If you have any suggestions or feedback,
+                please feel free to reach out to me, you can find a link to my
+                personal website in the footer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-container">
+          <div class="footer-logo">
+            <a href="/">Game Library</a>
+          </div>
+          <span class="credits"
+            >Made with &hearts; by
+            <a href="https://mariamills.org/" target="_blank"
+              >Maria Mills</a
+            ></span
+          >
+          <ul class="footer-links">
+            <li class="footer-item"><a href="#">Home</a></li>
+            <li class="footer-item"><a href="#library">Library</a></li>
+            <li class="footer-item"><a href="#about">About</a></li>
+          </ul>
+        </div>
+      </footer>
+
+      <!-- Add Game Modal -->
+      <div class="form-container">
+        <form id="add-game-form">
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title" required />
+
+          <label for="desc">Description</label>
+          <input type="text" name="desc" id="desc" />
+
+          <label for="release-date">Release Date</label>
+          <input type="date" name="release-date" id="release-date" />
+
+          <label for="developer">Developer</label>
+          <input type="text" name="developer" id="developer" />
+
+          <label for="publisher">Publisher</label>
+          <input type="text" name="publisher" id="publisher" />
+
+          <label for="genre">Genre</label>
+          <input type="text" name="genre" id="genre" />
+
+          <button type="submit" id="add-game-btn" class="btn">Add Game</button>
+        </form>
+
+        <!-- More Info Modal -->
+        <div id="game-modal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="game-modal-title"></h2>
+            <div id="game-modal-body">
+              <p>
+                Release Date:
+                <span id="game-modal-release-date"></span>
+              </p>
+              <p>
+                Developer:
+                <span id="game-modal-developer"></span>
+              </p>
+              <p>
+                Publisher:
+                <span id="game-modal-publisher"></span>
+              </p>
+              <p>Genre: <span id="game-modal-genre"></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
