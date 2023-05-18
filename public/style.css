@@ -41,6 +41,12 @@ button {
   cursor: pointer;
 }
 
+nav {
+  position: fixed;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .nav-container {
   font-size: 1.3rem;
   display: flex;
@@ -67,6 +73,7 @@ button {
 }
 
 .hero-container {
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -180,6 +187,13 @@ button {
   justify-content: space-evenly;
   align-items: center;
   margin: 2rem auto;
+  flex-wrap: wrap;
+}
+
+.about-img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
 }
 
 .about-info {
@@ -198,7 +212,9 @@ button {
   background-color: var(--primary-color);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 1.5rem;
-  margin-top: 5rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .footer-links {
@@ -234,6 +250,21 @@ button {
   margin: 0.5rem 1rem 1.5rem 1rem;
 }
 
+/* Hamburger Menu */
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out;
+  background-color: var(--text);
+}
+
+.hamburger {
+  cursor: pointer;
+  display: none;
+}
+
 /* Modal */
 .modal {
   display: none;
@@ -257,4 +288,59 @@ button {
   width: 80%;
   min-width: 300px;
   max-width: 500px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 470px) {
+  #new-btn {
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .about-text {
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .nav-links {
+    position: absolute;
+    flex-direction: column;
+    top: -200%;
+    left: 0;
+    gap: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    transform: translateY(65%);
+    display: block;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .nav-links.active {
+    top: 0;
+  }
+}
+
+@media screen and (max-width: 716px) {
+  .about-info {
+    width: 100%;
+  }
 }

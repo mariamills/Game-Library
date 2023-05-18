@@ -11,11 +11,17 @@ const modalReleaseDate = document.getElementById('game-modal-release-date');
 const modalDeveloper = document.getElementById('game-modal-developer');
 const modalPublisher = document.getElementById('game-modal-publisher');
 const modalGenre = document.getElementById('game-modal-genre');
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.querySelector('.nav-links');
 
 newBtn.addEventListener(
   'click',
   () => (form.style.display = form.style.display === 'flex' ? 'none' : 'flex')
 );
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
 
 addGameBtn.addEventListener('click', () => {
   const title = document.getElementById('title').value;
